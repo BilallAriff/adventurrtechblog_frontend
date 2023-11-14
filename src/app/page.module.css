@@ -1,9 +1,13 @@
-.container {
-  height: 100vh;
+/* .container {
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: aquamarine; */
+  height: 100vh;
+  background-color: #fcfcfc;
+} */
+
+.container {
+  margin: 1rem 15rem;
 }

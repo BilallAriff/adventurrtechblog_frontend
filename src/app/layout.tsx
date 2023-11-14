@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ThemeRegistry from "../../theme/ThemeRegistery";
+import ThemeRegistery from "../../theme/ThemeRegistery.js";
+import { ReduxProvider } from "./redux/ReduxProvider";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import MainNavigation from "./components/MainNavigation/MainNavigation";
+import Footer from "./components/Footer/Footer";
+import BusinessLogo from "./components/BusinessLogo/BusinessLogo";
+import "./globalStyles.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +23,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ThemeRegistry options={{ key: "mui-theme" }}>
-        <body className={inter.className}>{children}</body>
-      </ThemeRegistry>
+      <ThemeRegistery options={{ key: "mui-theme" }}>
+        <ReduxProvider>
+          <body>
+            <Grid container margin={2} spacing={0.5}>
+              <Grid item md={12}>
+                <Container>
+                  <BusinessLogo />
+                </Container>
+              </Grid>
+              <Grid item md={12}>
+                <MainNavigation />
+              </Grid>
+              {children}
+              <Grid item md={12}>
+                <Footer />
+              </Grid>
+            </Grid>
+          </body>
+        </ReduxProvider>
+      </ThemeRegistery>
     </html>
   );
 }
