@@ -34,9 +34,8 @@ export default function Home() {
           <Grid container spacing={3}>
             {blogs.map((blog, index) => {
               return (
-                <Grid item md={3}>
+                <Grid key={index} item md={3}>
                   <Card
-                    key={index}
                     title={blog?.title}
                     shortDescription={blog?.shortDescription}
                     image={blog?.image}
@@ -123,7 +122,7 @@ const blogs = [
     title: "How MetaVerse will change the world we see today",
     shortDescription:
       "learn everything you need to know about the modern emerging technology MetaVerse by Facebook and how it impacts our day to day life",
-    image: "/images/blog/blog-5.jpg",
+    image: "/images/blog/blog-1.jpg",
     slug: "How_MetaVerse_will_change_the_world_we_see_today_123123123",
     tags: [
       "Object Oriented Programming",

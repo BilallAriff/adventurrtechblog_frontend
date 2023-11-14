@@ -16,18 +16,24 @@ const Card = (props: any) => {
 
   return (
     <Box
+      className={"card"}
       sx={{
         // border: "1px solid red",
         boxShadow: "0px 3px 14px -8px rgba(0,0,0,0.24)",
         borderRadius: "4px",
         width: "100%",
         overflow: "hidden",
+        cursor: "pointer",
+        "&:hover": {
+          boxShadow: "0px 4px 18px -8px rgba(0,0,0,0.50)",
+          transition: "0.5s",
+        },
       }}
     >
       <Box>
         <img width={"100%"} src={`${image}`} alt={`${title}`} />
       </Box>
-      <Box>
+      <Box sx={{ paddingY: 1, paddingX: 1.5 }}>
         <Tooltip title={title}>
           <Typography
             my={1.5}
@@ -46,16 +52,19 @@ const Card = (props: any) => {
           </Typography>
         </Tooltip>
       </Box>
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           flexWrap: "wrap",
+          paddingY: 1,
+          paddingX: 1,
         }}
       >
         {Array.isArray(tags) &&
           tags.map((tag, index) => {
             return (
               <Box
+                key={index}
                 sx={{
                   border: "4px",
                   margin: 0.5,
@@ -76,14 +85,15 @@ const Card = (props: any) => {
               </Box>
             );
           })}
-      </Box>
+      </Box> */}
       <Box
         sx={{
           borderTop: "1px solid lightgray",
           display: "flex",
           justifyContent: "space-between",
           mt: 1.5,
-          paddingY: 0.5,
+          paddingY: 1,
+          paddingX: 1.5,
         }}
       >
         <Typography sx={{ fontSize: 14 }}>{`${moment().format(
