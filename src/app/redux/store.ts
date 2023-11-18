@@ -1,17 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./features/counter/counterSlice";
 import { categoryApi } from "./services/categories";
+import { blogApi } from "./services/blogs";
 // import categoryReducer from "./features/categories/categorySlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
+    [blogApi.reducerPath]: blogApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({}).concat([
       // userApi.middleware,
       categoryApi.middleware,
+      blogApi.middleware,
     ]),
 });
 

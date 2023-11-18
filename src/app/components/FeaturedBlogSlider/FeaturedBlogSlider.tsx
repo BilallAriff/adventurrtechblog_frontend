@@ -3,8 +3,9 @@ import React from "react";
 
 import { Grid, Container, Box, Button, Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
+import Image from "next/image";
 
-const FeaturedBlogSlider = () => {
+const FeaturedBlogSlider = ({ blogs }: any) => {
   var items = [
     {
       name: "How MetaVerse will change the world we see today",
@@ -27,7 +28,7 @@ const FeaturedBlogSlider = () => {
       <Box
         sx={{
           //   backgroundColor: `${props.item?.backgroundColor}`,
-          background: `url(${props?.item?.image})`,
+          background: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${props?.item?.attributes?.thumbnail?.data?.attributes?.formats?.large?.url})`,
           backgroundSize: "cover",
           height: 350,
           borderRadius: "4px",
@@ -55,7 +56,7 @@ const FeaturedBlogSlider = () => {
             color={"white"}
             sx={{ backgroundColor: "#00072275" }}
           >
-            {props.item.name}
+            {props?.item?.attributes?.title}
           </Typography>
           <Typography
             // fontWeight={800}
@@ -66,8 +67,27 @@ const FeaturedBlogSlider = () => {
             color={"white"}
             sx={{ backgroundColor: "#00072275" }}
           >
-            {props.item.description}
+            {props?.item?.attributes?.shortDescription}
           </Typography>
+          {/* <img
+            alt="fffff"
+            src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${props?.item?.attributes?.thumbnail?.data?.attributes?.formats?.large?.url}`}
+            width={"1000px"}
+            height={"500px"}
+          />
+          <button
+            onClick={() =>
+              console.log({
+                base_url: process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL,
+                props,
+                thumbnail:
+                  props?.item?.attributes?.thumbnail?.data?.attributes?.formats
+                    ?.large?.url,
+              })
+            }
+          >
+            console
+          </button> */}
         </Box>
         {/* <h2>{props.item.name}</h2>
         <p>{props.item.description}</p> */}
@@ -79,7 +99,7 @@ const FeaturedBlogSlider = () => {
     <Grid item md={12}>
       <Container>
         <Carousel>
-          {items.map((item, i) => (
+          {blogs?.map((item: any, i: number) => (
             <Item key={i} item={item} />
           ))}
         </Carousel>

@@ -1,4 +1,12 @@
-import { Box, Button, Typography, Grid, Container } from "@mui/material";
+"use client";
+import {
+  Box,
+  Button,
+  Typography,
+  Grid,
+  Container,
+  CircularProgress,
+} from "@mui/material";
 import styles from "./page.module.css";
 import Switch from "@mui/material/Switch";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,6 +14,7 @@ import { RootState } from "./redux/store";
 import { decrement, increment } from "./redux/features/counter/counterSlice";
 import FeaturedBlogSlider from "./components/FeaturedBlogSlider/FeaturedBlogSlider";
 import Card from "./components/Card/Card";
+import { useGetBlogsQuery } from "./redux/services/blogs";
 // import { decrement, increment } from "./counterSlice";
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
@@ -14,10 +23,20 @@ export default function Home() {
   // const count = useSelector((state: RootState) => state.counter.value);
   // const dispatch = useDispatch();
 
+  const { isLoading, error, data } = useGetBlogsQuery(null);
+
+  if (isLoading) {
+    return (
+      <>
+        <CircularProgress />
+      </>
+    );
+  }
+
   return (
     <>
       <Grid item md={12}>
-        <FeaturedBlogSlider />
+        <FeaturedBlogSlider blogs={data?.data} />
       </Grid>
       <Grid item md={12}>
         <Typography
@@ -32,7 +51,21 @@ export default function Home() {
       <Grid md={12}>
         <Container>
           <Grid container spacing={3}>
-            {blogs.map((blog, index) => {
+            {data?.data?.map((blog, index) => {
+              console.log(blog);
+              return (
+                <Grid key={index} item md={3}>
+                  <Card
+                    title={blog?.attributes?.title}
+                    shortDescription={blog?.attributes?.shortDescription}
+                    image={blog?.attributes?.image}
+                    slug={blog?.attributes?.slug}
+                    tags={blog?.attributes?.tags}
+                  />
+                </Grid>
+              );
+            })}
+            {/* {blogs.map((blog, index) => {
               return (
                 <Grid key={index} item md={3}>
                   <Card
@@ -44,7 +77,7 @@ export default function Home() {
                   />
                 </Grid>
               );
-            })}
+            })} */}
           </Grid>
         </Container>
       </Grid>
