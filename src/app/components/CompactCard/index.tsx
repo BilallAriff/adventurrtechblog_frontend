@@ -18,12 +18,37 @@ const CompactCard = (props: any) => {
   };
 
   return (
-    <Box>
-      <Box sx={{ width: 5, backgroundColor: "lightgray" }} />
+    <Box
+      sx={{
+        borderLeft: "5px solid #e7e6e7",
+        paddingLeft: 1,
+        display: "flex",
+        flexDirection: "row",
+        marginBottom: 2.5,
+      }}
+    >
       <Box>
-        <Typography>{title}</Typography>
-        <Typography>{shortDescription}</Typography>
-        <Typography component={"span"}>Read Now</Typography>
+        <Typography
+          sx={{ fontSize: 14, mb: 1, fontWeight: 600, ...TypographyText }}
+        >
+          {title}
+        </Typography>
+        <Typography sx={{ fontSize: 13, fontWeight: 400, ...TypographyText }}>
+          {shortDescription}
+        </Typography>
+        <Typography
+          sx={{
+            width: "100%",
+            fontSize: 12,
+            textAlign: "right",
+            fontWeight: 600,
+            color: "blue",
+            cursor: "pointer",
+          }}
+          component={"span"}
+        >
+          Read Now
+        </Typography>
       </Box>
     </Box>
   );
