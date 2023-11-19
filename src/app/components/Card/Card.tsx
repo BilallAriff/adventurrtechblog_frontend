@@ -2,9 +2,12 @@
 import React from "react";
 import { Box, Typography, Tooltip } from "@mui/material";
 import moment from "moment";
+import { useRouter } from "next/navigation";
 
 const Card = (props: any) => {
-  const { title, shortDescription, image, tags } = props;
+  const { title, shortDescription, image, tags, slug, datePosted } = props;
+
+  const router = useRouter();
 
   const TypographyText = {
     overflow: "hidden",
@@ -16,6 +19,8 @@ const Card = (props: any) => {
 
   return (
     <Box
+      component={"span"}
+      onClick={() => router.push(`/post/${slug}`)}
       className={"card"}
       sx={{
         // border: "1px solid red",
@@ -30,6 +35,7 @@ const Card = (props: any) => {
         },
       }}
     >
+      <button onClick={() => console.log({ image, slug })}>console</button>
       <Box>
         <img width={"100%"} src={`${image}`} alt={`${title}`} />
       </Box>

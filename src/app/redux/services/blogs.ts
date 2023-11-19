@@ -20,6 +20,11 @@ export const blogApi = createApi({
       query: () => "blogs?populate=%2A",
       providesTags: ["Blogs"],
     }),
+    getBlogBySlug: builder.query({
+      query: (slug) => ({
+        url: `blogs?populate=%2A&[slug][$eq]=${slug}`,
+      }),
+    }),
     getCategoryById: builder.query<Blog, { id: string }>({
       query: ({ id }) => `categories/${id}`,
     }),
@@ -59,8 +64,9 @@ export const blogApi = createApi({
 
 export const {
   useGetBlogsQuery,
-  useGetCategoryByIdQuery,
-  useAddNewCategoryMutation,
-  useDeleteCategoryByIdMutation,
-  useUpdateCategoryMutation,
+  useGetBlogBySlugQuery,
+  // useGetCategoryByIdQuery,
+  // useAddNewCategoryMutation,
+  // useDeleteCategoryByIdMutation,
+  // useUpdateCategoryMutation,
 } = blogApi;

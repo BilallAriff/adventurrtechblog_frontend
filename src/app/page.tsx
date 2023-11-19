@@ -15,6 +15,8 @@ import { decrement, increment } from "./redux/features/counter/counterSlice";
 import FeaturedBlogSlider from "./components/FeaturedBlogSlider/FeaturedBlogSlider";
 import Card from "./components/Card/Card";
 import { useGetBlogsQuery } from "./redux/services/blogs";
+import { useGetCategoriesQuery } from "./redux/services/categories";
+import GlobalLoadingUI from "./components/GlobalLoadingUI/GobalLoadingUI";
 // import { decrement, increment } from "./counterSlice";
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
@@ -24,13 +26,10 @@ export default function Home() {
   // const dispatch = useDispatch();
 
   const { isLoading, error, data } = useGetBlogsQuery(null);
+  const { isLoading: isLoadingCategories } = useGetCategoriesQuery(null);
 
-  if (isLoading) {
-    return (
-      <>
-        <CircularProgress />
-      </>
-    );
+  if (isLoading || isLoadingCategories) {
+    return <GlobalLoadingUI />;
   }
 
   return (
@@ -58,9 +57,10 @@ export default function Home() {
                   <Card
                     title={blog?.attributes?.title}
                     shortDescription={blog?.attributes?.shortDescription}
-                    image={blog?.attributes?.image}
+                    image={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${blog?.attributes?.coverImage?.data?.attributes?.formats?.large.url}`}
                     slug={blog?.attributes?.slug}
                     tags={blog?.attributes?.tags}
+                    datePosted={blog?.attributes?.datePosted}
                   />
                 </Grid>
               );

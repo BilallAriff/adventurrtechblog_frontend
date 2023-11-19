@@ -1,7 +1,8 @@
+import { Grid } from "@mui/material";
 import React from "react";
 
-const page = () => {
-  return <div>post</div>;
+const page = ({ children }) => {
+  return <>{children}</>;
 };
 
 export default page;
