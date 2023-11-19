@@ -26,7 +26,7 @@ export default function RootLayout({
       <ThemeRegistery options={{ key: "mui-theme" }}>
         <ReduxProvider>
           <body>
-            <Grid container margin={2} spacing={0.5}>
+            <Grid container spacing={0.5}>
               <Grid item md={12}>
                 <Container>
                   <BusinessLogo />
@@ -35,7 +35,9 @@ export default function RootLayout({
               <Grid item md={12}>
                 <MainNavigation />
               </Grid>
-              {children}
+              <Grid item md={12}>
+                <Box>{children}</Box>
+              </Grid>
               <Grid item md={12}>
                 <Footer />
               </Grid>

@@ -45,6 +45,13 @@
   margin-right: 0;
 }
 
+.flex-column-all-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 @keyframes disappearAndChangeColor {
   0% {
     opacity: 1;

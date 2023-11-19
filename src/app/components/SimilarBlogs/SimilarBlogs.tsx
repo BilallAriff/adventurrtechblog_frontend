@@ -1,89 +1,38 @@
-"use client";
-import {
-  Box,
-  Button,
-  Typography,
-  Grid,
-  Container,
-  CircularProgress,
-} from "@mui/material";
-import styles from "./page.module.css";
-import Switch from "@mui/material/Switch";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "./redux/store";
-import { decrement, increment } from "./redux/features/counter/counterSlice";
-import FeaturedBlogSlider from "./components/FeaturedBlogSlider/FeaturedBlogSlider";
-import Card from "./components/Card/Card";
-import { useGetBlogsQuery } from "./redux/services/blogs";
-import { useGetCategoriesQuery } from "./redux/services/categories";
-import GlobalLoadingUI from "./components/GlobalLoadingUI/GobalLoadingUI";
-// import { decrement, increment } from "./counterSlice";
+import { Box } from "@mui/material";
+import React from "react";
+import Card from "../Card/Card";
+import CompactCard from "../CompactCard";
 
-const label = { inputProps: { "aria-label": "Switch demo" } };
-
-export default function Home() {
-  // const count = useSelector((state: RootState) => state.counter.value);
-  // const dispatch = useDispatch();
-
-  const { isLoading, error, data } = useGetBlogsQuery(null);
-  const { isLoading: isLoadingCategories } = useGetCategoriesQuery(null);
-
-  if (isLoading || isLoadingCategories) {
-    return <GlobalLoadingUI />;
+const SimilarBlogs = () => {
+  for (let i = 0; i < 3; i++) {
+    return (
+      <Box className={"flex-column-all-center"}>
+        {blogs.slice(0, 3).map((blog, index) => {
+          return (
+            <CompactCard
+              key={index}
+              title={blog?.title}
+              shortDescription={blog?.shortDescription}
+              image={`${blog?.image}`}
+              slug={blog?.slug}
+              tags={blog?.tags}
+              datePosted={""}
+              //     key={index}
+              //   title={blog?.attributes?.title}
+              //   shortDescription={blog?.attributes?.shortDescription}
+              //   image={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${blog?.attributes?.coverImage?.data?.attributes?.formats?.large.url}`}
+              //   slug={blog?.attributes?.slug}
+              //   tags={blog?.attributes?.tags}
+              //   datePosted={blog?.attributes?.datePosted}
+            />
+          );
+        })}
+      </Box>
+    );
   }
+};
 
-  return (
-    <Grid container>
-      <Grid item md={12}>
-        <FeaturedBlogSlider blogs={data?.data} />
-      </Grid>
-      <Grid item md={12}>
-        <Typography
-          my={2}
-          textAlign={"center"}
-          variant="h4"
-          fontWeight={"bold"}
-        >
-          Latest Blogs
-        </Typography>
-      </Grid>
-      <Grid md={12}>
-        <Container>
-          <Grid container spacing={3}>
-            {data?.data?.map((blog, index) => {
-              console.log(blog);
-              return (
-                <Grid key={index} item md={3}>
-                  <Card
-                    title={blog?.attributes?.title}
-                    shortDescription={blog?.attributes?.shortDescription}
-                    image={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${blog?.attributes?.coverImage?.data?.attributes?.formats?.large.url}`}
-                    slug={blog?.attributes?.slug}
-                    tags={blog?.attributes?.tags}
-                    datePosted={blog?.attributes?.datePosted}
-                  />
-                </Grid>
-              );
-            })}
-            {/* {blogs.map((blog, index) => {
-              return (
-                <Grid key={index} item md={3}>
-                  <Card
-                    title={blog?.title}
-                    shortDescription={blog?.shortDescription}
-                    image={blog?.image}
-                    slug={blog?.slug}
-                    tags={blog?.tags}
-                  />
-                </Grid>
-              );
-            })} */}
-          </Grid>
-        </Container>
-      </Grid>
-    </Grid>
-  );
-}
+export default SimilarBlogs;
 
 const blogs = [
   {
