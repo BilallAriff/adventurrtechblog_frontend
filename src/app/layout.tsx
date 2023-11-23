@@ -8,6 +8,7 @@ import MainNavigation from "./components/MainNavigation/MainNavigation";
 import Footer from "./components/Footer/Footer";
 import BusinessLogo from "./components/BusinessLogo/BusinessLogo";
 import "./globalStyles.css";
+import MainNavigationV2 from "./components/MainNavigationV2/MainNavigationV2";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,9 @@ export default function RootLayout({
       <ThemeRegistery options={{ key: "mui-theme" }}>
         <ReduxProvider>
           <body>
-            <Grid container spacing={0.5}>
+            <MainNavigationV2 />
+            <Box>{children}</Box>
+            {/* <Grid container spacing={0.5}>
               <Grid item md={12}>
                 <Container>
                   <BusinessLogo />
@@ -41,7 +44,7 @@ export default function RootLayout({
               <Grid item md={12}>
                 <Footer />
               </Grid>
-            </Grid>
+            </Grid> */}
           </body>
         </ReduxProvider>
       </ThemeRegistery>

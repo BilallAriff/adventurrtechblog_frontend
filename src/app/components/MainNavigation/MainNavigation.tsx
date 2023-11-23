@@ -22,11 +22,11 @@ const MainNavigation = () => {
   return (
     <>
       <Container>
-        <Box className={"flex-left main-navigation"}>
-          {data?.data.map((item, index) => {
+        {/* <Box className={"flex-left main-navigation"}>
+          {data?.data?.map((item: any, index: any) => {
             return <ListItem key={index}>{item?.attributes?.name}</ListItem>;
           })}
-        </Box>
+        </Box> */}
         {/* <Box className={"flex-left main-navigation"}>
           {categories.map((item, index) => {
             return <ListItem key={index}>{item}</ListItem>;
