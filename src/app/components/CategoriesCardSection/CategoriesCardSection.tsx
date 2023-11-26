@@ -44,7 +44,7 @@ const CategoriesCardSection = () => {
             <CategoryCard
               key={index}
               categoryName={category?.name}
-              categoryImage={category?.image}
+              categoryImage={`http://localhost:3000/${category?.image}`}
             />
           </Grid>
         );

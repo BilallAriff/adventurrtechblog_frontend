@@ -129,22 +129,6 @@ export default function Home({ children }: any) {
           </Box>
         </Box>
       </Grid>
-      <Grid container mt={5} md={12}>
-        <Container>
-          <Typography
-            fontWeight={600}
-            fontSize={32}
-            textAlign={"center"}
-            my={2}
-          >
-            Explore more at Adventurr.tech
-          </Typography>
-          <CategoriesCardSection />
-        </Container>
-      </Grid>
-      <Grid mt={10} item md={12} sx={{ backgroundColor: "#e4e4e6" }}>
-        <FooterV2 />
-      </Grid>
       {/* <Grid item md={12} mb={50}></Grid> */}
     </Grid>
   );

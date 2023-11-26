@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import { Box, Container, Typography, styled } from "@mui/material";
 import BusinessLogo from "../BusinessLogo/BusinessLogo";
 import NavList from "../NavigationList/NavList";
 import NavListItem from "../NavigationList/NavListItem";
 import NavSocialIcon from "../NavigationList/NavSocialIcon";
+
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -23,7 +25,7 @@ const FooterV2 = () => {
   });
 
   return (
-    <Box paddingTop={3}>
+    <Box paddingTop={3} borderTop={"1px solid lightgray"}>
       <Container>
         <Box
           sx={{

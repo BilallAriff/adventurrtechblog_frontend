@@ -9,6 +9,8 @@ import Footer from "./components/Footer/Footer";
 import BusinessLogo from "./components/BusinessLogo/BusinessLogo";
 import "./globalStyles.css";
 import MainNavigationV2 from "./components/MainNavigationV2/MainNavigationV2";
+import CategoriesCardSection from "./components/CategoriesCardSection/CategoriesCardSection";
+import FooterV2 from "./components/Footer/FooterV2";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,6 +47,22 @@ export default function RootLayout({
                 <Footer />
               </Grid>
             </Grid> */}
+            <Grid container mt={5} md={12}>
+              <Container>
+                <Typography
+                  fontWeight={600}
+                  fontSize={32}
+                  textAlign={"center"}
+                  my={2}
+                >
+                  Explore more at Adventurr.tech
+                </Typography>
+                <CategoriesCardSection />
+              </Container>
+            </Grid>
+            <Grid mt={10} item md={12} sx={{ backgroundColor: "#e4e4e6" }}>
+              <FooterV2 />
+            </Grid>
           </body>
         </ReduxProvider>
       </ThemeRegistery>
