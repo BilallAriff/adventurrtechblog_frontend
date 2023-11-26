@@ -1,3 +1,4 @@
+"use client";
 import { Box, Chip, Typography, styled } from "@mui/material";
 import Image from "next/image";
 import React from "react";

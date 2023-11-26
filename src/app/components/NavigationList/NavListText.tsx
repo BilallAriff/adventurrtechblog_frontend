@@ -1,7 +1,7 @@
 import { styled } from "@mui/material";
 import React from "react";
 
-const NavList = (props: any) => {
+const NavListText = (props: any) => {
   const { children } = props;
 
   const Nav_ListText = styled("span")({
@@ -14,4 +14,4 @@ const NavList = (props: any) => {
   return <Nav_ListText>{children}</Nav_ListText>;
 };
 
-export default NavList;
+export default NavListText;

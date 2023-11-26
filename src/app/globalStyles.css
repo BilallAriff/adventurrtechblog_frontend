@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.flex-all-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flex-left {
   /* border: 1px solid red; */
   display: flex;
