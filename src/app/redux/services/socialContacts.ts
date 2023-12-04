@@ -8,8 +8,8 @@ type SubCategory = {
   meta: Object;
 };
 
-export const subCategoryApi: any = createApi({
-  reducerPath: "subCategoryApi",
+export const socialContactsApi: any = createApi({
+  reducerPath: "socialContactsApi",
   refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_LOCAL_STRAPI_BASE_URL}`,
@@ -17,13 +17,13 @@ export const subCategoryApi: any = createApi({
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_BACKEND_PUBLIC_KEY}`,
     },
   }),
-  tagTypes: ["SubCategories"],
+  tagTypes: ["SocialContacts"],
   endpoints: (builder) => ({
-    getSubCategories: builder.query<SubCategory, null>({
-      query: () => "sub-categories",
-      providesTags: ["SubCategories"],
+    getSocialContacts: builder.query<any, null>({
+      query: () => "social-contacts",
+      providesTags: ["SocialContacts"],
     }),
   }),
 });
 
-export const { useGetSubCategoriesQuery } = subCategoryApi;
+export const { useGetSocialContactsQuery } = socialContactsApi;

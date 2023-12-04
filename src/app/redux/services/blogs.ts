@@ -25,6 +25,11 @@ export const blogApi = createApi({
         url: `blogs?populate=%2A&[slug][$eq]=${slug}`,
       }),
     }),
+    getFeaturedBlogs: builder.query({
+      query: () => ({
+        url: `blogs?filters%5Bfeatured%5D=true&fields[0]=title&fields[1]=shortDescription&populate=featuredCoverImage`,
+      }),
+    }),
     getCategoryById: builder.query<Blog, { id: string }>({
       query: ({ id }) => `categories/${id}`,
     }),
@@ -65,6 +70,7 @@ export const blogApi = createApi({
 export const {
   useGetBlogsQuery,
   useGetBlogBySlugQuery,
+  useGetFeaturedBlogsQuery,
   // useGetCategoryByIdQuery,
   // useAddNewCategoryMutation,
   // useDeleteCategoryByIdMutation,

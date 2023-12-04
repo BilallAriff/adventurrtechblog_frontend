@@ -23,6 +23,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import BusinessLogo from "../BusinessLogo/BusinessLogo";
 import { styled } from "@mui/material";
+import { useGetCategoriesQuery } from "@/app/redux/services/categories";
+import SocialContacts from "../SocialContacts/SocialContacts";
 
 interface Props {
   /**
@@ -37,6 +39,8 @@ const drawerWidth = 240;
 
 export default function MainNavigationV2(props: Props) {
   const { window } = props;
+  const { data: categories, isLoading, isError } = useGetCategoriesQuery(null);
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -121,18 +125,16 @@ export default function MainNavigationV2(props: Props) {
             </Box>
             <Box>
               <NavList>
-                <NavListItem>
-                  <NavListText>Design</NavListText>
-                </NavListItem>
-                <NavListItem>
-                  <NavListText>Food</NavListText>
-                </NavListItem>
-                <NavListItem>
-                  <NavListText>Pop culture</NavListText>
-                </NavListItem>
-                <NavListItem>
-                  <NavListText>DIY classes</NavListText>
-                </NavListItem>
+                {categories?.data?.map((cat: any, index: number) => {
+                  return (
+                    <>
+                      {" "}
+                      <NavListItem>
+                        <NavListText>{cat?.attributes?.name}</NavListText>
+                      </NavListItem>
+                    </>
+                  );
+                })}
               </NavList>
             </Box>
           </Box>
@@ -144,7 +146,8 @@ export default function MainNavigationV2(props: Props) {
               alignItems: "center",
             }}
           >
-            <NavList>
+            <SocialContacts />
+            {/* <NavList>
               <NavListItem>
                 <SocialIcon
                   sx={{
@@ -214,7 +217,7 @@ export default function MainNavigationV2(props: Props) {
                   <MailOutlineIcon />
                 </SocialIcon>
               </NavListItem>
-            </NavList>
+            </NavList> */}
           </Box>
         </Toolbar>
       </AppBar>

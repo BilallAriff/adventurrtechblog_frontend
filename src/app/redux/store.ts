@@ -4,6 +4,8 @@ import { categoryApi } from "./services/categories";
 import { subCategoryApi } from "./services/subCategories";
 
 import { blogApi } from "./services/blogs";
+import { socialContactsApi } from "./services/socialContacts";
+import { aboutMeApi } from "./services/aboutMe";
 // import categoryReducer from "./features/categories/categorySlice";
 
 export const store = configureStore({
@@ -12,6 +14,8 @@ export const store = configureStore({
     [categoryApi.reducerPath]: categoryApi.reducer,
     [blogApi.reducerPath]: blogApi.reducer,
     [subCategoryApi.reducerPath]: subCategoryApi.reducer,
+    [socialContactsApi.reducerPath]: socialContactsApi.reducer,
+    [aboutMeApi.reducerPath]: aboutMeApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({}).concat([
@@ -19,6 +23,8 @@ export const store = configureStore({
       categoryApi.middleware,
       blogApi.middleware,
       subCategoryApi.middleware,
+      socialContactsApi.middleware,
+      aboutMeApi.middleware,
     ]),
 });
 

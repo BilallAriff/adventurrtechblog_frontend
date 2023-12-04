@@ -19,11 +19,22 @@ export const categoryApi = createApi({
   }),
   tagTypes: ["Categories"],
   endpoints: (builder) => ({
-    getCategories: builder.query<Category, null>({
+    getCategories: builder.query<any, null>({
       query: () => "categories",
       providesTags: ["Categories"],
     }),
-    getCategoryById: builder.query<Category, { id: string }>({
+    // getCategoryBySlug: builder.query<any, { slug: string }>({
+    //   query: ({ slug }) => `category/${slug}`,
+    // }),
+    getAllDataByCategorySlug: builder.query({
+      query: (slug) => ({
+        url: `categories?populate=%2A&[slug][$eq]=${slug}`,
+      }),
+    }),
+    getAllDataByCategoryId: builder.query<any, { id: number | string }>({
+      query: ({ id }) => `categories/${id}?populate=%2A`,
+    }),
+    getCategoryById: builder.query<any, { id: string }>({
       query: ({ id }) => `categories/${id}`,
     }),
     addNewCategory: builder.mutation({
@@ -38,7 +49,7 @@ export const categoryApi = createApi({
       }),
       invalidatesTags: ["Categories"],
     }),
-    deleteCategoryById: builder.mutation<Category, { id: string }>({
+    deleteCategoryById: builder.mutation<any, { id: string }>({
       query: ({ id }) => ({
         url: `categories/${id}`,
         method: "DELETE",
@@ -62,6 +73,9 @@ export const categoryApi = createApi({
 
 export const {
   useGetCategoriesQuery,
+  // useGetCategoryBySlugQuery,
+  useGetAllDataByCategorySlugQuery,
+  useGetAllDataByCategoryIdQuery,
   useGetCategoryByIdQuery,
   useAddNewCategoryMutation,
   useDeleteCategoryByIdMutation,
