@@ -4,8 +4,11 @@ import React from "react";
 import { Grid, Container, Box, Button, Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import Image from "next/image";
+import { useGetFeaturedBlogsQuery } from "@/app/redux/services/blogs";
 
 const FeaturedBlogSliderV2 = ({ blogs }: any) => {
+  const { data: featuredBlogs, isLoading } = useGetFeaturedBlogsQuery(null);
+
   var items = [
     {
       name: "How MetaVerse will change the world we see today",
@@ -24,14 +27,14 @@ const FeaturedBlogSliderV2 = ({ blogs }: any) => {
   ];
 
   function Item(props: any) {
+    const { image, heading, subHeading } = props;
     return (
       <Box
         sx={{
           // border: "1px solid red",
           width: "100%",
           height: "450px",
-          backgroundImage:
-            "url(images/featured_blogs/google-deep-mind-cover.jpg)",
+          backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           display: "flex",
           flexDirection: "column",
@@ -49,7 +52,7 @@ const FeaturedBlogSliderV2 = ({ blogs }: any) => {
           }}
         >
           <Typography fontWeight={800} fontSize={36} color={"#02145acf"}>
-            Artificial Inteligence
+            {heading}
           </Typography>
         </Box>
         <Box
@@ -63,21 +66,31 @@ const FeaturedBlogSliderV2 = ({ blogs }: any) => {
           }}
         >
           <Typography fontWeight={600} fontSize={18} color={"#02145acf"}>
-            Future, Pressent, Past, how AI has changed the way we see and
-            interact with the wold
+            {subHeading}
           </Typography>
         </Box>
       </Box>
     );
   }
+
+  if (isLoading) {
+    return <h4>Loading</h4>;
+  }
   return (
     <Grid item md={12}>
       <Carousel>
-        {/* {items?.map((item: any, i: number) => ( */}
-        <Item
-        // key={i} item={item}
-        />
-        {/* ))} */}
+        {Array.isArray(featuredBlogs.data) &&
+          featuredBlogs?.data?.map((item: any, index: any) => {
+            console.log(item);
+            return (
+              <Item
+                key={index}
+                heading={item?.attributes?.title}
+                subHeading={item?.attributes?.shortDescription}
+                image={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${item?.attributes?.featuredCoverImage?.data?.attributes?.formats?.large?.url}`}
+              />
+            );
+          })}
       </Carousel>
     </Grid>
   );
