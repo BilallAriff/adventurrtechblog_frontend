@@ -33,10 +33,14 @@ export default function Home({ children }: any) {
   // const count = useSelector((state: RootState) => state.counter.value);
   // const dispatch = useDispatch();
 
-  const { isLoading, error, data } = useGetBlogsQuery(null);
+  const {
+    isLoading: blogsLoading,
+    error,
+    data: blogs,
+  } = useGetBlogsQuery(null);
   const { isLoading: isLoadingCategories } = useGetCategoriesQuery(null);
 
-  if (isLoading || isLoadingCategories) {
+  if (blogsLoading || isLoadingCategories) {
     return <GlobalLoadingUI />;
   }
 
@@ -53,10 +57,18 @@ export default function Home({ children }: any) {
       <Grid mb={10} item md={12}>
         <Container>
           <Grid container>
-            {blogs.map((blog, index) => {
+            {blogs?.data.map((blog, index) => {
+              console.log("blogs", blog?.attributes?.sub_categories);
               return (
                 <Grid padding={1} key={index} md={3}>
-                  <CardV2 />
+                  <CardV2
+                    thumbnail={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${blog?.attributes?.thumbnail?.data?.attributes?.formats?.thumbnail?.url}`}
+                    title={blog?.attributes?.title}
+                    shortDescription={blog?.attributes?.shortDescription}
+                    datePosted={blog?.attributes?.datePosted}
+                    subCategories={blog?.attributes?.sub_categories?.data}
+                    slug={blog?.attributes?.slug}
+                  />
                 </Grid>
               );
             })}
@@ -134,7 +146,7 @@ export default function Home({ children }: any) {
   );
 }
 
-const blogs = [
+const blogsDummy = [
   {
     title: "How MetaVerse will change the world we see today",
     shortDescription:

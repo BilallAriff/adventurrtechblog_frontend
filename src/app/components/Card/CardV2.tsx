@@ -3,8 +3,20 @@ import { Box, Chip, Typography, styled } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import UserProfileAvatar from "../UserProfileAvatar/UserProfileAvatar";
+import { useRouter } from "next/navigation";
 
-const CardV2 = () => {
+const CardV2 = (props: any) => {
+  const {
+    slug,
+    thumbnail,
+    title,
+    shortDescription,
+    subCategories,
+    datePosted,
+  } = props;
+
+  const router = useRouter();
+
   const Card = styled(Box)({
     width: "100%",
     border: "4px",
@@ -42,14 +54,21 @@ const CardV2 = () => {
   return (
     <Card>
       <CardHeader>
-        <img width={"100%"} src={"/images/featured_blogs/netflix.jpg"} />
+        <img width={"100%"} src={thumbnail} />
       </CardHeader>
       <CardBody>
-        <Chip sx={{ marginY: 1 }} label={"Technology"} />
+        {subCategories?.map((subCat: any, index: any) => {
+          return (
+            <Chip
+              key={index}
+              sx={{ marginY: 1 }}
+              label={subCat?.attributes?.name}
+            />
+          );
+        })}
         {/* <CardCategories>Technology</CardCategories> */}
-        <CardText>
-          Read the case study of netflix and how it emerge as the leader in
-          streaming
+        <CardText onClick={() => router.push(`/post/${slug}`)}>
+          {title}
         </CardText>
       </CardBody>
       <CardFooter mt={2}>
