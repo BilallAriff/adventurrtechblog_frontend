@@ -3,9 +3,10 @@ import { Box, Chip, Typography, styled } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import UserProfileAvatar from "../UserProfileAvatar/UserProfileAvatar";
+import Link from "next/link";
 
 const CategoryCard = (props: any) => {
-  const { categoryImage, categoryName } = props;
+  const { categoryImage, categoryName, slug } = props;
   const Card = styled(Box)({
     width: "100%",
     border: "4px",
@@ -16,7 +17,7 @@ const CategoryCard = (props: any) => {
     borderRadius: "4px",
   });
   const CardBody = styled(Box)({});
-  const CardText = styled(Typography)({
+  const CardText = styled(Link)({
     textAlign: "center",
     fontSize: 15,
     marginTop: 3,
@@ -35,7 +36,7 @@ const CategoryCard = (props: any) => {
         <img width={"100%"} src={categoryImage} />
       </CardHeader>
       <CardBody>
-        <CardText>{categoryName}</CardText>
+        <CardText href={`/categories/${slug}`}>{categoryName}</CardText>
       </CardBody>
     </Card>
   );

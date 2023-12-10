@@ -2,7 +2,7 @@
 import GlobalLoadingUI from "@/app/components/GlobalLoadingUI/GobalLoadingUI";
 import PostHeading from "@/app/components/PostHeading/PostHeading";
 import { useGetBlogBySlugQuery } from "@/app/redux/services/blogs";
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import Markdown from "react-markdown";
@@ -24,8 +24,8 @@ const BlogPost = () => {
     <Grid container>
       <Grid item md={12} mt={12}>
         <PostHeading
-          heading={params?.postslug}
-          image="/images/featured_blogs/cropped-metaverse.jpg"
+          heading={data?.data?.[0]?.attributes?.title}
+          image={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${data?.data?.[0]?.attributes?.featuredCoverImage?.data?.attributes?.formats?.large?.url}`}
         />
       </Grid>
       {/* <Grid md={12}>

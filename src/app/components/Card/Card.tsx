@@ -35,7 +35,6 @@ const Card = (props: any) => {
         },
       }}
     >
-      <button onClick={() => console.log({ image, slug })}>console</button>
       <Box>
         <img width={"100%"} src={`${image}`} alt={`${title}`} />
       </Box>

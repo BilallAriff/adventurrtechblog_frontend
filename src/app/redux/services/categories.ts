@@ -20,15 +20,15 @@ export const categoryApi = createApi({
   tagTypes: ["Categories"],
   endpoints: (builder) => ({
     getCategories: builder.query<any, null>({
-      query: () => "categories",
+      query: () => "categories?populate=%2A",
       providesTags: ["Categories"],
     }),
     // getCategoryBySlug: builder.query<any, { slug: string }>({
     //   query: ({ slug }) => `category/${slug}`,
     // }),
     getAllDataByCategorySlug: builder.query({
-      query: (slug) => ({
-        url: `categories?populate=%2A&[slug][$eq]=${slug}`,
+      query: ({ slug }) => ({
+        url: `categories?populate[0]=coverImage&populate[1]=sub_categories&populate[2]=blogs.thumbnail.categories&blog&filters%5Bslug%5D=${slug}`,
       }),
     }),
     getAllDataByCategoryId: builder.query<any, { id: number | string }>({

@@ -81,7 +81,6 @@ const FeaturedBlogSliderV2 = ({ blogs }: any) => {
       <Carousel>
         {Array.isArray(featuredBlogs.data) &&
           featuredBlogs?.data?.map((item: any, index: any) => {
-            console.log(item);
             return (
               <Item
                 key={index}

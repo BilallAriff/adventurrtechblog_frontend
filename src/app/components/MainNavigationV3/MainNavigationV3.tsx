@@ -27,6 +27,7 @@ import { useGetCategoriesQuery } from "@/app/redux/services/categories";
 import SocialContacts from "../SocialContacts/SocialContacts";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import BrandingNavigation from "../BrandingNavigation/BrandingNavigation";
 
 interface Props {
   /**
@@ -39,7 +40,7 @@ interface Props {
 const navItems = ["Home", "About", "Contact"];
 const drawerWidth = 240;
 
-export default function MainNavigationV2(props: Props) {
+export default function MainNavigationV3(props: Props) {
   const { window } = props;
   const router = useRouter();
   const { data: categories, isLoading, isError } = useGetCategoriesQuery(null);
@@ -103,80 +104,85 @@ export default function MainNavigationV2(props: Props) {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar
-        sx={{ backgroundColor: "#FFFF", borderBottom: "1px solid #f1f1f1" }}
-        elevation={0}
-        component="nav"
-      >
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
+    <>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar
+          sx={{ backgroundColor: "#FFFF", borderBottom: "1px solid #f1f1f1" }}
+          elevation={0}
+          component="nav"
         >
-          <Box
+          {/* <Container> */}
+          <BrandingNavigation />
+          <Toolbar
             sx={{
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
-            <Box>
-              <BusinessLogo />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box>
+                <BusinessLogo />
+              </Box>
+              <Box>
+                <NavList>
+                  {categories?.data?.map((cat: any, index: number) => {
+                    return (
+                      <>
+                        {" "}
+                        <NavListItem>
+                          <NavListText>
+                            <Link href={`/categories/${cat?.attributes?.slug}`}>
+                              {cat?.attributes?.name}
+                            </Link>
+                          </NavListText>
+                        </NavListItem>
+                      </>
+                    );
+                  })}
+                </NavList>
+              </Box>
             </Box>
-            <Box>
-              <NavList>
-                {categories?.data?.map((cat: any, index: number) => {
-                  return (
-                    <>
-                      {" "}
-                      <NavListItem>
-                        <NavListText>
-                          <Link href={`/categories/${cat?.attributes?.slug}`}>
-                            {cat?.attributes?.name}
-                          </Link>
-                        </NavListText>
-                      </NavListItem>
-                    </>
-                  );
-                })}
-              </NavList>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <SocialContacts />
             </Box>
-          </Box>
-          <Box
+          </Toolbar>
+          {/* </Container>   */}
+        </AppBar>
+        <nav>
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
             }}
           >
-            <SocialContacts />
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
-    </Box>
+            {drawer}
+          </Drawer>
+        </nav>
+      </Box>
+    </>
   );
 }

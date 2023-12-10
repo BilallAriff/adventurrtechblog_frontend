@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import ThemeRegistery from "../../theme/ThemeRegistery.js";
 import { ReduxProvider } from "./redux/ReduxProvider";
@@ -11,8 +11,9 @@ import "./globalStyles.css";
 import MainNavigationV2 from "./components/MainNavigationV2/MainNavigationV2";
 import CategoriesCardSection from "./components/CategoriesCardSection/CategoriesCardSection";
 import FooterV2 from "./components/Footer/FooterV2";
+import MainNavigationV3 from "./components/MainNavigationV3/MainNavigationV3";
 
-const inter = Inter({ subsets: ["latin"] });
+const NunitoSans = Nunito_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,10 +27,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        />
+      </head>
       <ThemeRegistery options={{ key: "mui-theme" }}>
         <ReduxProvider>
-          <body>
-            <MainNavigationV2 />
+          <body className={NunitoSans.className}>
+            <MainNavigationV3 />
             <Box>{children}</Box>
             {/* <Grid container spacing={0.5}>
               <Grid item md={12}>

@@ -22,7 +22,7 @@ export const blogApi = createApi({
     }),
     getBlogBySlug: builder.query({
       query: (slug) => ({
-        url: `blogs?populate=%2A&[slug][$eq]=${slug}`,
+        url: `blogs?populate=%2A&filters%5Bslug%5D=${slug}`,
       }),
     }),
     getFeaturedBlogs: builder.query({
