@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-
 import { Grid, Container, Box, Button, Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import Image from "next/image";
@@ -8,23 +7,6 @@ import { useGetFeaturedBlogsQuery } from "@/app/redux/services/blogs";
 
 const FeaturedBlogSliderV3 = ({ blogs }: any) => {
   const { data: featuredBlogs, isLoading } = useGetFeaturedBlogsQuery(null);
-
-  var items = [
-    {
-      name: "How MetaVerse will change the world we see today",
-      description:
-        "learn everything you need to know about the modern emerging technology MetaVerse by Facebook and how it impacts our day to day life",
-      backgroundColor: "#2E294E",
-      image: "/images/featured_blogs/cropped-metaverse.jpg",
-    },
-    {
-      name: "Netflix - The case study",
-      description:
-        "ever though of the psychology of netflix, how can you not stop watching that episode thouh you have to wake up early in the morning",
-      backgroundColor: "#C5D86D",
-      image: "images/featured_blogs/cropped-netflix.jpg",
-    },
-  ];
 
   function Item(props: any) {
     const { image, heading, subHeading } = props;
@@ -51,14 +33,25 @@ const FeaturedBlogSliderV3 = ({ blogs }: any) => {
             width: "100%",
             height: "100%",
             backgroundColor: "rgba(0, 0, 0, 0.8)",
-            pointerEvents: "none",
+            // pointerEvents: "none",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
           }}
         >
           <Box sx={{ paddingX: 7, paddingBottom: 7, paddingRight: "40%" }}>
-            <Typography fontWeight={400} fontSize={46} color={"#FFFFFF"}>
+            <Typography
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 2,
+              }}
+              fontWeight={400}
+              fontSize={46}
+              color={"#FFFFFF"}
+            >
               {heading}
             </Typography>
             <Typography

@@ -58,6 +58,48 @@
   flex-direction: column;
 }
 
+/* ------------------- Line Limits ------------- */
+
+.line-limit-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Limit the content to two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal; /* Allow wrapping for browsers that don't support -webkit-line-clamp */
+}
+
+.line-limit-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit the content to two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal; /* Allow wrapping for browsers that don't support -webkit-line-clamp */
+}
+
+.line-limit-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit the content to two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal; /* Allow wrapping for browsers that don't support -webkit-line-clamp */
+}
+
+.line-limit-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limit the content to two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal; /* Allow wrapping for browsers that don't support -webkit-line-clamp */
+}
+
+.line-limit-5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Limit the content to two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal; /* Allow wrapping for browsers that don't support -webkit-line-clamp */
+}
+
 @keyframes disappearAndChangeColor {
   0% {
     opacity: 1;

@@ -27,6 +27,8 @@ import Footer from "./components/Footer/Footer";
 import FooterV2 from "./components/Footer/FooterV2";
 import { Nunito_Sans } from "next/font/google";
 import FeaturedBlogSliderV3 from "./components/FeaturedBlogSliderV3/FeaturedBlogSliderV3";
+import SectionHeading from "./components/SectionHeading/SectionHeading";
+import CardV3 from "./components/Card/CardV3";
 // import { decrement, increment } from "./counterSlice";
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
@@ -50,10 +52,8 @@ export default function Home({ children }: any) {
       <Grid md={12} mt={4}>
         <FeaturedBlogSliderV3 />
       </Grid>
-      <Grid item md={12}>
-        <Typography my={2} fontWeight={600} fontSize={32} textAlign={"center"}>
-          Latest This Week
-        </Typography>
+      <Grid item my={2} md={12}>
+        <SectionHeading text={"Latest This Week"} />
       </Grid>
       <Grid mb={10} item md={12}>
         <Container>
@@ -61,8 +61,8 @@ export default function Home({ children }: any) {
             {blogs?.data.map((blog, index) => {
               console.log("blogs", blog?.attributes?.sub_categories);
               return (
-                <Grid padding={1} key={index} md={3}>
-                  <CardV2
+                <Grid padding={1} key={index} md={2}>
+                  <CardV3
                     thumbnail={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${blog?.attributes?.thumbnail?.data?.attributes?.formats?.thumbnail?.url}`}
                     title={blog?.attributes?.title}
                     shortDescription={blog?.attributes?.shortDescription}
