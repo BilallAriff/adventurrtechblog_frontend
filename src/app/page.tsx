@@ -26,6 +26,7 @@ import CategoriesCardSection from "./components/CategoriesCardSection/Categories
 import Footer from "./components/Footer/Footer";
 import FooterV2 from "./components/Footer/FooterV2";
 import { Nunito_Sans } from "next/font/google";
+import FeaturedBlogSliderV3 from "./components/FeaturedBlogSliderV3/FeaturedBlogSliderV3";
 // import { decrement, increment } from "./counterSlice";
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
@@ -46,8 +47,8 @@ export default function Home({ children }: any) {
 
   return (
     <Grid mt={10} container>
-      <Grid md={12}>
-        <FeaturedBlogSliderV2 />
+      <Grid md={12} mt={4}>
+        <FeaturedBlogSliderV3 />
       </Grid>
       <Grid item md={12}>
         <Typography my={2} fontWeight={600} fontSize={32} textAlign={"center"}>
