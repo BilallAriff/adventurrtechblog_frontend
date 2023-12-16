@@ -1,6 +1,6 @@
 "use client";
 import { useGetSocialContactsQuery } from "@/app/redux/services/socialContacts";
-import { Skeleton } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import React from "react";
 import NavList from "../NavigationList/NavList";
 import NavListItem from "../NavigationList/NavListItem";
@@ -15,6 +15,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 type SocialContactPropTypes = {
   variant?: "black" | "white" | "color";
   size?: "small" | "large";
+  containerStyle: object;
 };
 
 const LoadingSkeleton = () => {
@@ -40,7 +41,7 @@ const LoadingSkeleton = () => {
 };
 
 const SocialContacts = (props: SocialContactPropTypes) => {
-  const { variant = "color", size } = props;
+  const { variant = "color", size, containerStyle = {} } = props;
 
   const {
     data: socialContacts,
@@ -157,7 +158,14 @@ const SocialContacts = (props: SocialContactPropTypes) => {
   return (
     <>
       {" "}
-      <NavList>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          ...containerStyle,
+        }}
+      >
         {socialContacts?.data?.map((contact: any, index: number) => {
           console.log(contact);
           return (
@@ -166,7 +174,7 @@ const SocialContacts = (props: SocialContactPropTypes) => {
             </NavListItem>
           );
         })}
-      </NavList>
+      </Box>
     </>
   );
 };

@@ -29,6 +29,7 @@ import { Nunito_Sans } from "next/font/google";
 import FeaturedBlogSliderV3 from "./components/FeaturedBlogSliderV3/FeaturedBlogSliderV3";
 import SectionHeading from "./components/SectionHeading/SectionHeading";
 import CardV3 from "./components/Card/CardV3";
+import AboutMeSection from "./components/AboutMeSection/AboutMeSection";
 // import { decrement, increment } from "./counterSlice";
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
@@ -77,70 +78,7 @@ export default function Home({ children }: any) {
         </Container>
       </Grid>
       <Grid item md={12}>
-        <Box>
-          <Box
-            sx={{
-              backgroundColor: "#e4e4e6",
-              display: "flex",
-              // border: "1px solid red",
-            }}
-          >
-            <Box
-              sx={{
-                width: "50%",
-                padding: 8,
-                paddingRight: 2,
-                display: "flex",
-                justifyContent: "end",
-                alignItems: "center",
-                // border: "1px solid green",
-              }}
-            >
-              <Avatar
-                sx={{ width: 350, height: 350 }}
-                src={"images/users/bilal_arif.jpg"}
-              />
-            </Box>
-            <Box
-              sx={{
-                // border: "1px solid purple",
-                width: "50%",
-                // height: "100%",
-                display: "flex",
-                // flexDirection: "column",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                padding: 8,
-                paddingLeft: 2,
-              }}
-            >
-              <Box>
-                <Typography
-                  sx={{ fontWeight: 600, fontSize: 32, color: "#000722" }}
-                >
-                  Bilal Arif
-                </Typography>
-                <Typography
-                  sx={{ fontWeight: 400, fontSize: 18, color: "##000000bd" }}
-                >
-                  Im Senior Software Engineer, Enterperneur and Founder of
-                  Adventurr.tech a full-fledge Softare Development and Design
-                  Agency, learn More about us{" "}
-                </Typography>
-                <Button sx={{ marginTop: 2 }} variant={"contained"}>
-                  About Us
-                </Button>
-                {/* <TextField
-                  sx={{ backgroundColor: "#FFFFF" }}
-                  fullWidth
-                  placeholder="yourmeail@mail.com"
-                  size="small"
-                  variant="outlined"
-                /> */}
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+        <AboutMeSection />
       </Grid>
       {/* <Grid item md={12} mb={50}></Grid> */}
     </Grid>
