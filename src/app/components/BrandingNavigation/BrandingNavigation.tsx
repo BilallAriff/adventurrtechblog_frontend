@@ -11,7 +11,7 @@ import BusinessLogoV2 from "../BusinessLogoV2/BusinessLogoV2";
 
 export default function BrandingNavigation() {
   return (
-    <Box sx={{ backgroundColor: "#000000" }}>
+    <Box sx={{ backgroundColor: "#000000", paddingY: 1 }}>
       <Container>
         <Box
           sx={{
@@ -39,7 +39,7 @@ export default function BrandingNavigation() {
               alignItems: "center",
             }}
           >
-            <SocialContacts variant={"black"} />
+            <SocialContacts size="large" variant={"white"} />
           </Box>
         </Box>
       </Container>

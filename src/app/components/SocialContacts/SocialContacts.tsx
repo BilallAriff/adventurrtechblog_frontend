@@ -12,6 +12,11 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
+type SocialContactPropTypes = {
+  variant?: "black" | "white" | "color";
+  size?: "small" | "large";
+};
+
 const LoadingSkeleton = () => {
   return (
     <NavList>
@@ -34,22 +39,45 @@ const LoadingSkeleton = () => {
   );
 };
 
-const SocialContacts = () => {
+const SocialContacts = (props: SocialContactPropTypes) => {
+  const { variant = "color", size } = props;
+
   const {
     data: socialContacts,
     isLoading,
     isError,
   } = useGetSocialContactsQuery(null);
 
+  const ChooseVariant = () => {
+    switch (variant) {
+      case "black":
+        return "#000000";
+      case "white":
+        return "#FFFFFF";
+      default:
+        return false;
+    }
+  };
+
+  const ChoseFontSize = () => {
+    switch (size) {
+      case "small":
+        return 16;
+      case "large":
+        return 22;
+      default:
+        return 18;
+    }
+  };
+
   const SocialIcon = (icon: string) => {
-    console.log(icon);
     if (icon === "facebook")
       return (
         <NavSocialIcon
           sx={{
-            fontSize: 18,
-            color: "#1877F2",
-            borderColor: "#1877F2",
+            fontSize: ChoseFontSize(),
+            color: variant ? ChooseVariant() : "#1877F2",
+            borderColor: variant ? ChooseVariant() : "#1877F2",
           }}
         >
           <FacebookIcon />
@@ -59,9 +87,9 @@ const SocialContacts = () => {
       return (
         <NavSocialIcon
           sx={{
-            fontSize: 18,
-            color: "#fbad50",
-            borderColor: "#fbad50",
+            fontSize: ChoseFontSize(),
+            color: variant ? ChooseVariant() : "#fbad50",
+            borderColor: variant ? ChooseVariant() : "#fbad50",
           }}
         >
           {" "}
@@ -72,9 +100,9 @@ const SocialContacts = () => {
       return (
         <NavSocialIcon
           sx={{
-            fontSize: 18,
-            color: "#0077b5",
-            borderColor: "#0077b5",
+            fontSize: ChoseFontSize(),
+            color: variant ? ChooseVariant() : "#0077b5",
+            borderColor: variant ? ChooseVariant() : "#0077b5",
           }}
         >
           {" "}
@@ -85,9 +113,9 @@ const SocialContacts = () => {
       return (
         <NavSocialIcon
           sx={{
-            fontSize: 18,
-            color: "#CD201F",
-            borderColor: "#CD201F",
+            fontSize: ChoseFontSize(),
+            color: variant ? ChooseVariant() : "#CD201F",
+            borderColor: variant ? ChooseVariant() : "#CD201F",
           }}
         >
           {" "}
@@ -98,9 +126,9 @@ const SocialContacts = () => {
       return (
         <NavSocialIcon
           sx={{
-            fontSize: 18,
-            color: "#1DA1F2",
-            borderColor: "#1DA1F2",
+            fontSize: ChoseFontSize(),
+            color: variant ? ChooseVariant() : "#1DA1F2",
+            borderColor: variant ? ChooseVariant() : "#1DA1F2",
           }}
         >
           {" "}
@@ -111,9 +139,9 @@ const SocialContacts = () => {
       return (
         <NavSocialIcon
           sx={{
-            fontSize: 18,
-            color: "#DAF7A6",
-            borderColor: "#DAF7A6",
+            fontSize: ChoseFontSize(),
+            color: variant ? ChooseVariant() : "#DAF7A6",
+            borderColor: variant ? ChooseVariant() : "#DAF7A6",
           }}
         >
           {" "}

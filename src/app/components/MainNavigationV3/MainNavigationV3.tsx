@@ -10,24 +10,15 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import BusinessLogo from "../BusinessLogo/BusinessLogo";
 import { styled } from "@mui/material";
 import { useGetCategoriesQuery } from "@/app/redux/services/categories";
 import SocialContacts from "../SocialContacts/SocialContacts";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import BrandingNavigation from "../BrandingNavigation/BrandingNavigation";
+import Container from "../Container/Container";
 
 interface Props {
   /**
@@ -54,35 +45,23 @@ export default function MainNavigationV3(props: Props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const NavList = styled("ul")({
-    // border: "1px solid red",
+  const NavList = styled(Box)({
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     width: "100%",
   });
-  const NavListItem = styled("li")({
-    // border: "1px solid red",
+  const NavListItem = styled(Box)({
+    width: "fit-content",
     cursor: "pointer",
     marginLeft: 5,
     marginRight: 5,
   });
   const NavListText = styled("span")({
-    color: "#00000075",
+    color: "#000000",
+    fontSize: 14,
     ":hover": {
-      borderBottom: "5px solid yellow",
+      borderBottom: "2px solid #000000",
     },
-  });
-
-  const SocialIcon = styled("span")({
-    // border: "1px solid #000722",
-    // height: 25,
-    // width: 25,
-    // color: "#000722",
-    // borderRadius: "50px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 2,
   });
 
   const drawer = (
@@ -108,58 +87,35 @@ export default function MainNavigationV3(props: Props) {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar
-          sx={{ backgroundColor: "#FFFF", borderBottom: "1px solid #f1f1f1" }}
+          sx={{
+            backgroundColor: "#FFFF",
+            borderBottom: "1px solid #f1f1f1",
+            paddingX: 0,
+          }}
           elevation={0}
           component="nav"
         >
-          {/* <Container> */}
           <BrandingNavigation />
-          <Toolbar
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Box>
-                <BusinessLogo />
-              </Box>
-              <Box>
-                <NavList>
-                  {categories?.data?.map((cat: any, index: number) => {
-                    return (
-                      <>
-                        {" "}
-                        <NavListItem>
-                          <NavListText>
-                            <Link href={`/categories/${cat?.attributes?.slug}`}>
-                              {cat?.attributes?.name}
-                            </Link>
-                          </NavListText>
-                        </NavListItem>
-                      </>
-                    );
-                  })}
-                </NavList>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <SocialContacts />
-            </Box>
-          </Toolbar>
+          <Box sx={{ paddingY: 1.5, backgroundColor: "#F9FBF2" }}>
+            <Container>
+              <NavList>
+                {categories?.data?.map((cat: any, index: number) => {
+                  return (
+                    <>
+                      {" "}
+                      <NavListItem>
+                        <NavListText>
+                          <Link href={`/categories/${cat?.attributes?.slug}`}>
+                            {cat?.attributes?.name}
+                          </Link>
+                        </NavListText>
+                      </NavListItem>
+                    </>
+                  );
+                })}
+              </NavList>
+            </Container>
+          </Box>
           {/* </Container>   */}
         </AppBar>
         <nav>
