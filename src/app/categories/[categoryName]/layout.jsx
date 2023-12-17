@@ -12,9 +12,12 @@ import {
   useGetAllDataByCategorySlugQuery,
 } from "../../redux/services/categories";
 import CardV2 from "@/app/components/Card/CardV2";
+import CardV3 from "@/app/components/Card/CardV3";
+import CategoryPill from "@/app/components/Pills/CategoryPill";
+import RoundActionPill from "@/app/components/Pills/RoundActionPill";
+import HeaderComponent from "@/app/components/HeaderComponent/HeaderComponent";
 
 const Layout = (props) => {
-  const { children } = props;
   const params = useParams();
   const categoryName = params?.categoryName;
   const {
@@ -31,47 +34,39 @@ const Layout = (props) => {
 
   return (
     <Grid container>
-      <Grid item md={12}>
-        <Button
-          onClick={() =>
-            console.log({ allDataByCategory, categoryData, categoryName })
-          }
-        >
-          Data
-        </Button>
-        <Box
-          sx={{
-            backgroundImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${allDataByCategory?.data?.[0]?.attributes?.coverImage?.data?.attributes?.formats?.large?.url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            height: "350px",
-          }}
-          className={"flex-all-center"}
-        >
-          <BackdropHeading>
-            {allDataByCategory?.data?.[0]?.attributes?.name}
-          </BackdropHeading>
-        </Box>
+      <Grid item md={12} mt={15}>
+        <Container>
+          <HeaderComponent
+            image={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${allDataByCategory?.data?.[0]?.attributes?.coverImage?.data?.attributes?.formats?.large?.url}`}
+            heading={allDataByCategory?.data?.[0]?.attributes?.name}
+            subHeading={
+              allDataByCategory?.data?.[0]?.attributes?.shortDescription
+            }
+          />
+        </Container>
       </Grid>
       <Grid item md={12}>
         <Container>
-          <Box className="flex-all-center">
-            <Box my={5} width={"fit-content"}>
-              <NavList>
-                {allDataByCategory?.data?.[0]?.attributes?.sub_categories?.data.map(
-                  (subCategory, index) => {
-                    console.log("su categories =>", subCategory);
-                    return (
-                      <NavListItem key={index}>
-                        <NavListText>
-                          {subCategory?.attributes?.name}
-                        </NavListText>
-                      </NavListItem>
-                    );
-                  }
-                )}
-              </NavList>
-            </Box>
+          <Box
+            sx={{
+              my: 5,
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            {allDataByCategory?.data?.[0]?.attributes?.sub_categories?.data.map(
+              (subCategory, index) => {
+                return (
+                  <RoundActionPill
+                    key={index}
+                    text={subCategory?.attributes?.name}
+                  />
+                );
+              }
+            )}
           </Box>
         </Container>
       </Grid>
@@ -82,8 +77,8 @@ const Layout = (props) => {
               {allDataByCategory?.data?.[0]?.attributes?.blogs?.data.map(
                 (blog, index) => {
                   return (
-                    <Grid padding={1} key={index} md={3}>
-                      <CardV2
+                    <Grid padding={1} key={index} md={2}>
+                      <CardV3
                         thumbnail={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${blog?.attributes?.thumbnail?.data?.attributes?.formats?.thumbnail?.url}`}
                         title={blog?.attributes?.title}
                         shortDescription={blog?.attributes?.shortDescription}
@@ -104,12 +99,3 @@ const Layout = (props) => {
 };
 
 export default Layout;
-
-const subCategories = [
-  "Technology",
-  "Science",
-  "Engineering",
-  "Metavers",
-  "Trends",
-  "Gadgets",
-];

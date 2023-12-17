@@ -17,7 +17,7 @@ const PostHeading = (props: PostHeadingType) => {
         backgroundImage: `url(${image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "350px",
+        height: "450px",
       }}
       className={"flex-all-center"}
     >

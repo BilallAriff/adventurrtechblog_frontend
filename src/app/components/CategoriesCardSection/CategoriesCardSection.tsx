@@ -1,7 +1,7 @@
 "use client";
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React from "react";
-import CategoryCard from "../Card/CategoryCard";
+import CategoryCardV2 from "../Card/CategoryCardV2";
 import { useGetCategoriesQuery } from "@/app/redux/services/categories";
 
 const categories = [
@@ -41,20 +41,20 @@ const CategoriesCardSection = () => {
   const { data, isLoading, isError } = useGetCategoriesQuery(null);
 
   return (
-    <Grid container>
+    <Box
+      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+    >
       {data?.data?.map((category: any, index: any) => {
         return (
-          <Grid padding={1} md={2} key={index}>
-            <CategoryCard
-              slug={category?.attributes?.slug}
-              key={index}
-              categoryName={category?.attributes?.name}
-              categoryImage={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${category?.attributes?.thumbnail?.data?.attributes?.formats?.thumbnail?.url}`}
-            />
-          </Grid>
+          <CategoryCardV2
+            slug={category?.attributes?.slug}
+            key={index}
+            categoryName={category?.attributes?.name}
+            categoryImage={`${process.env.NEXT_PUBLIC_STRAPI_BASE_ASSET_URL}${category?.attributes?.thumbnail?.data?.attributes?.formats?.thumbnail?.url}`}
+          />
         );
       })}
-    </Grid>
+    </Box>
   );
 };
 

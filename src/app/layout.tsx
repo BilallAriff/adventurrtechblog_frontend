@@ -12,6 +12,7 @@ import MainNavigationV2 from "./components/MainNavigationV2/MainNavigationV2";
 import CategoriesCardSection from "./components/CategoriesCardSection/CategoriesCardSection";
 import FooterV2 from "./components/Footer/FooterV2";
 import MainNavigationV3 from "./components/MainNavigationV3/MainNavigationV3";
+import SectionHeading from "./components/SectionHeading/SectionHeading";
 
 const NunitoSans = Nunito_Sans({ subsets: ["latin"] });
 
@@ -38,32 +39,11 @@ export default function RootLayout({
           <body className={NunitoSans.className}>
             <MainNavigationV3 />
             <Box>{children}</Box>
-            {/* <Grid container spacing={0.5}>
-              <Grid item md={12}>
-                <Container>
-                  <BusinessLogo />
-                </Container>
-              </Grid>
-              <Grid item md={12}>
-                <MainNavigation />
-              </Grid>
-              <Grid item md={12}>
-                <Box>{children}</Box>
-              </Grid>
-              <Grid item md={12}>
-                <Footer />
-              </Grid>
-            </Grid> */}
             <Grid container mt={5} md={12}>
               <Container>
-                <Typography
-                  fontWeight={600}
-                  fontSize={32}
-                  textAlign={"center"}
-                  my={2}
-                >
-                  Explore more at Adventurr.tech
-                </Typography>
+                <Box my={10}>
+                  <SectionHeading text={"Explore More at Adventurr.tech"} />
+                </Box>
                 <CategoriesCardSection />
               </Container>
             </Grid>
