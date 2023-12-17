@@ -15,7 +15,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 type SocialContactPropTypes = {
   variant?: "black" | "white" | "color";
   size?: "small" | "large";
-  containerStyle: object;
+  containerStyle?: object;
 };
 
 const LoadingSkeleton = () => {

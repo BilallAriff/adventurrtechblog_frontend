@@ -8,6 +8,7 @@ import BusinessLogo from "../BusinessLogo/BusinessLogo";
 import SocialContacts from "../SocialContacts/SocialContacts";
 import Container from "../Container/Container";
 import BusinessLogoV2 from "../BusinessLogoV2/BusinessLogoV2";
+import { Typography } from "@mui/material";
 
 export default function BrandingNavigation() {
   return (
@@ -27,8 +28,15 @@ export default function BrandingNavigation() {
               alignItems: "center",
             }}
           >
-            <Box>
+            <Box className="flex-all-center">
               <BusinessLogoV2 />
+              <Typography>
+                {" "}
+                <span style={{ marginLeft: "10px", marginRight: "10px" }}>
+                  |
+                </span>{" "}
+                Bilal Arif
+              </Typography>
             </Box>
           </Box>
           <Box

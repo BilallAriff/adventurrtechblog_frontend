@@ -13,6 +13,7 @@ import CategoriesCardSection from "./components/CategoriesCardSection/Categories
 import FooterV2 from "./components/Footer/FooterV2";
 import MainNavigationV3 from "./components/MainNavigationV3/MainNavigationV3";
 import SectionHeading from "./components/SectionHeading/SectionHeading";
+import FooterV3 from "./components/Footer/FooterV3";
 
 const NunitoSans = Nunito_Sans({ subsets: ["latin"] });
 
@@ -48,7 +49,7 @@ export default function RootLayout({
               </Container>
             </Grid>
             <Grid mt={10} item md={12} sx={{ backgroundColor: "#e4e4e6" }}>
-              <FooterV2 />
+              <FooterV3 />
             </Grid>
           </body>
         </ReduxProvider>
